@@ -19,8 +19,8 @@ public class Intaker extends Subsystem {
     private final WPI_TalonSRX talonSRX4 = RobotMap.intakerTalonSRX4;
     private final SpeedControllerGroup speedControllerGroupIntake = RobotMap.intakerSpeedControllerGroupIntake;
     private final WPI_TalonSRX talonSRX5 = RobotMap.intakerTalonSRX5;
-    private final DoubleSolenoid doubleSolenoidTurn23 = RobotMap.intakerDoubleSolenoidTurn23;
-    private final DoubleSolenoid doubleSolenoidHold45 = RobotMap.intakerDoubleSolenoidHold45;
+    private final DoubleSolenoid doubleSolenoidTurn45 = RobotMap.intakerDoubleSolenoidTurn45;
+    private final DoubleSolenoid doubleSolenoidHold01 = RobotMap.intakerDoubleSolenoidHold01;
 
 
     @Override

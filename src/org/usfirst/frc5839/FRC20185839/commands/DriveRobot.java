@@ -1,5 +1,6 @@
-
 package org.usfirst.frc5839.FRC20185839.commands;
+
+import org.usfirst.frc5839.FRC20185839.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -8,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveRobot extends Command {
 
     public DriveRobot() {
+    	requires(Robot.driveBase);
 
     }
 

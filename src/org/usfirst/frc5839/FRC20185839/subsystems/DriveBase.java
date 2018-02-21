@@ -42,7 +42,7 @@ public class DriveBase extends Subsystem {
     private final SpeedControllerGroup speedControllerGroupRobotLift = RobotMap.driveBaseSpeedControllerGroupRobotLift;
     
     //Gear shifting
-    private final DoubleSolenoid doubleSolenoidGearShift01 = RobotMap.driveBaseDoubleSolenoidGearShift01;
+    private final DoubleSolenoid doubleSolenoidGearShift23 = RobotMap.driveBaseDoubleSolenoidGearShift23;
 
 
     @Override
@@ -72,13 +72,13 @@ public class DriveBase extends Subsystem {
     
     public void ChangetoHigh() {
     	
-    	doubleSolenoidGearShift01.set(DoubleSolenoid.Value.kForward);
+    	doubleSolenoidGearShift23.set(DoubleSolenoid.Value.kForward);
     	
     }
     
     public void ChangetoLow() {
     	
-    	doubleSolenoidGearShift01.set(DoubleSolenoid.Value.kReverse);
+    	doubleSolenoidGearShift23.set(DoubleSolenoid.Value.kReverse);
     	
     }
     
