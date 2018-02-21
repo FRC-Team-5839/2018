@@ -33,14 +33,14 @@ public class RobotMap {
     public static WPI_TalonSRX driveBaseTalonSRX8;
     public static WPI_TalonSRX driveBaseTalonSRX9;
     public static SpeedControllerGroup driveBaseSpeedControllerGroupRobotLift;
-    public static DoubleSolenoid driveBaseDoubleSolenoidGearShift23;
+    public static DoubleSolenoid gearshiftDoubleSolenoidGearShift67;
     public static WPI_TalonSRX cubeliftTalonSRX1;
     public static WPI_TalonSRX cubeliftTalonSRX2;
     public static SpeedControllerGroup cubeliftSpeedControllerGroupLift;
     public static Solenoid cubeliftSolenoidLift16;
     public static Solenoid cubeliftSolenoidLift27;
-    public static WPI_TalonSRX intakerTalonSRX3;
-    public static WPI_TalonSRX intakerTalonSRX4;
+    public static WPI_TalonSRX intakerTalonSRX6;
+    public static WPI_TalonSRX intakerTalonSRX7;
     public static SpeedControllerGroup intakerSpeedControllerGroupIntake;
     public static WPI_TalonSRX intakerTalonSRX5;
     public static DoubleSolenoid intakerDoubleSolenoidTurn45;
@@ -81,11 +81,11 @@ public class RobotMap {
         driveBaseTalonSRX6 = new WPI_TalonSRX(6);
         
         
-        driveBaseTalonSRX7 = new WPI_TalonSRX(7);
+//        driveBaseTalonSRX7 = new WPI_TalonSRX(7);
         
-        
-        driveBaseSpeedControllerGroupHang = new SpeedControllerGroup(driveBaseTalonSRX6, driveBaseTalonSRX7  );
-        LiveWindow.addActuator("DriveBase", "Speed Controller Group Hang", driveBaseSpeedControllerGroupHang);
+//        
+//        driveBaseSpeedControllerGroupHang = new SpeedControllerGroup(driveBaseTalonSRX6, driveBaseTalonSRX7  );
+//        LiveWindow.addActuator("DriveBase", "Speed Controller Group Hang", driveBaseSpeedControllerGroupHang);
         
         driveBaseTalonSRX8 = new WPI_TalonSRX(8);
         
@@ -96,8 +96,8 @@ public class RobotMap {
         driveBaseSpeedControllerGroupRobotLift = new SpeedControllerGroup(driveBaseTalonSRX8, driveBaseTalonSRX9  );
         LiveWindow.addActuator("DriveBase", "Speed Controller Group RobotLift", driveBaseSpeedControllerGroupRobotLift);
         
-        driveBaseDoubleSolenoidGearShift23 = new DoubleSolenoid(20, 2, 3);
-        LiveWindow.addActuator("DriveBase", "Double Solenoid Gear Shift 01", driveBaseDoubleSolenoidGearShift23);
+        gearshiftDoubleSolenoidGearShift67 = new DoubleSolenoid(20, 6, 7);
+        LiveWindow.addActuator("DriveBase", "Double Solenoid Gear Shift 01", gearshiftDoubleSolenoidGearShift67);
         
         cubeliftTalonSRX1 = new WPI_TalonSRX(1);
         
@@ -108,26 +108,27 @@ public class RobotMap {
         cubeliftSpeedControllerGroupLift = new SpeedControllerGroup(cubeliftTalonSRX1, cubeliftTalonSRX2  );
         LiveWindow.addActuator("Cubelift", "Speed Controller Group Lift", cubeliftSpeedControllerGroupLift);
         
-        cubeliftSolenoidLift16 = new Solenoid(20, 6);
-        LiveWindow.addActuator("Cubelift", "Solenoid Lift1 6", cubeliftSolenoidLift16);
+//        cubeliftSolenoidLift16 = new Solenoid(20, 6);
+//        LiveWindow.addActuator("Cubelift", "Solenoid Lift1 6", cubeliftSolenoidLift16);
         
-        cubeliftSolenoidLift27 = new Solenoid(20, 7);
-        LiveWindow.addActuator("Cubelift", "Solenoid Lift2 7", cubeliftSolenoidLift27);
-        
-        intakerTalonSRX3 = new WPI_TalonSRX(3);
-        
-        
-        intakerTalonSRX4 = new WPI_TalonSRX(4);
+//        cubeliftSolenoidLift27 = new Solenoid(20, 7);
+//        LiveWindow.addActuator("Cubelift", "Solenoid Lift2 7", cubeliftSolenoidLift27);
+//        
+        intakerTalonSRX6 = new WPI_TalonSRX(6);
+        intakerTalonSRX6.setInverted(Boolean.valueOf(true));
         
         
-        intakerSpeedControllerGroupIntake = new SpeedControllerGroup(intakerTalonSRX3, intakerTalonSRX4  );
+        intakerTalonSRX7 = new WPI_TalonSRX(7);
+        
+        
+        intakerSpeedControllerGroupIntake = new SpeedControllerGroup(intakerTalonSRX6, intakerTalonSRX7  );
         LiveWindow.addActuator("Intaker", "Speed Controller Group Intake", intakerSpeedControllerGroupIntake);
         
         intakerTalonSRX5 = new WPI_TalonSRX(5);
         
         
-        intakerDoubleSolenoidTurn45 = new DoubleSolenoid(20, 4, 5);
-        LiveWindow.addActuator("Intaker", "Double Solenoid Turn 23", intakerDoubleSolenoidTurn45);
+//        intakerDoubleSolenoidTurn45 = new DoubleSolenoid(20, 6, 5);
+//        LiveWindow.addActuator("Intaker", "Double Solenoid Turn 23", intakerDoubleSolenoidTurn45);
         
         intakerDoubleSolenoidHold01 = new DoubleSolenoid(20, 0, 1);
         LiveWindow.addActuator("Intaker", "Double Solenoid Hold 45", intakerDoubleSolenoidHold01);

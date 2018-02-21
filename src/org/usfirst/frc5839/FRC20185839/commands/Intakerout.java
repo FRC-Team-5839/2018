@@ -1,43 +1,42 @@
 package org.usfirst.frc5839.FRC20185839.commands;
 
 import org.usfirst.frc5839.FRC20185839.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveRobot extends Command {
+public class Intakerout extends Command {
 
-    public DriveRobot() {
-    	requires(Robot.driveBase);
-
+    public Intakerout() {
+    	requires(Robot.intaker);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
-    @Override
     protected void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    @Override
     protected void execute() {
-    	Robot.driveBase.Drive(-Robot.oi.joystick2.getRawAxis(1), -Robot.oi.joystick1.getRawAxis(1));
+    	Robot.intaker.SolenoidClose();
+    	Robot.intaker.Out();
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    @Override
     protected boolean isFinished() {
-        return false;
+        return !Robot.oi.joystickButton35.get();
     }
 
     // Called once after isFinished returns true
-    @Override
     protected void end() {
+    	Robot.intaker.Stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    @Override
     protected void interrupted() {
     }
 }

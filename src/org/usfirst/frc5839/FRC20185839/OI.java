@@ -1,10 +1,14 @@
 
 package org.usfirst.frc5839.FRC20185839;
 
+import org.usfirst.frc5839.FRC20185839.commands.ChangetoHigh;
+import org.usfirst.frc5839.FRC20185839.commands.ChangetoLow;
 import org.usfirst.frc5839.FRC20185839.commands.CubeDown;
 import org.usfirst.frc5839.FRC20185839.commands.CubeIntake;
 import org.usfirst.frc5839.FRC20185839.commands.CubeLift;
 import org.usfirst.frc5839.FRC20185839.commands.CubeOut;
+import org.usfirst.frc5839.FRC20185839.commands.Intakerout;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -48,24 +52,35 @@ public class OI {
     public JoystickButton joystickButton32;
     public JoystickButton joystickButton33;
     public JoystickButton joystickButton34;
+    public JoystickButton joystickButton35;
+    public JoystickButton joystickButton11;
+    public JoystickButton joystickButton21;
     public Joystick joystick3;
 
 
     public OI() {
 
         joystick3 = new Joystick(2);
-        
+        joystickButton35 = new JoystickButton(joystick3, 5);
+        joystickButton35.whenPressed(new Intakerout());
         joystickButton34 = new JoystickButton(joystick3, 4);
-        joystickButton34.whileHeld(new CubeOut());
+        joystickButton34.whenPressed(new CubeOut());
         joystickButton33 = new JoystickButton(joystick3, 3);
-        joystickButton33.whileHeld(new CubeIntake());
+        joystickButton33.whenPressed(new CubeIntake());
         joystickButton32 = new JoystickButton(joystick3, 2);
         joystickButton32.whileHeld(new CubeDown());
         joystickButton31 = new JoystickButton(joystick3, 1);
         joystickButton31.whileHeld(new CubeLift());
+        
+        
         joystick2 = new Joystick(1);
+        joystickButton21 = new JoystickButton(joystick2, 1);
+        joystickButton21.whenPressed(new ChangetoHigh());
+        
         
         joystick1 = new Joystick(0);
+        joystickButton11 = new JoystickButton(joystick1, 1);
+        joystickButton11.whenPressed(new ChangetoLow());
         
 
 

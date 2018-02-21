@@ -41,8 +41,7 @@ public class DriveBase extends Subsystem {
     private final WPI_TalonSRX talonSRX9 = RobotMap.driveBaseTalonSRX9;
     private final SpeedControllerGroup speedControllerGroupRobotLift = RobotMap.driveBaseSpeedControllerGroupRobotLift;
     
-    //Gear shifting
-    private final DoubleSolenoid doubleSolenoidGearShift23 = RobotMap.driveBaseDoubleSolenoidGearShift23;
+
 
 
     @Override
@@ -70,17 +69,6 @@ public class DriveBase extends Subsystem {
     	differentialDrive.stopMotor();
     }
     
-    public void ChangetoHigh() {
-    	
-    	doubleSolenoidGearShift23.set(DoubleSolenoid.Value.kForward);
-    	
-    }
-    
-    public void ChangetoLow() {
-    	
-    	doubleSolenoidGearShift23.set(DoubleSolenoid.Value.kReverse);
-    	
-    }
     
     public void LiftRobot() {
     	
