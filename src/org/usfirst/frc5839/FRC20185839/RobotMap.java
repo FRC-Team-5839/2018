@@ -1,15 +1,21 @@
 
 package org.usfirst.frc5839.FRC20185839;
 
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -46,58 +52,42 @@ public class RobotMap {
     public static DoubleSolenoid intakerDoubleSolenoidTurn45;
     public static DoubleSolenoid intakerDoubleSolenoidHold01;
 
-    @SuppressWarnings("deprecation")
 	public static void init() {
+		
         driveBaseSpeedController1 = new Talon(1);
-        LiveWindow.addActuator("DriveBase", "Speed Controller 1", (Talon) driveBaseSpeedController1);
         driveBaseSpeedController1.setInverted(false);
         driveBaseSpeedController2 = new Talon(2);
-        LiveWindow.addActuator("DriveBase", "Speed Controller 2", (Talon) driveBaseSpeedController2);
         driveBaseSpeedController2.setInverted(false);
         driveBaseSpeedController3 = new Talon(3);
-        LiveWindow.addActuator("DriveBase", "Speed Controller 3", (Talon) driveBaseSpeedController3);
         driveBaseSpeedController3.setInverted(false);
         driveBaseSpeedControllerGroupRight = new SpeedControllerGroup(driveBaseSpeedController1, driveBaseSpeedController2 , driveBaseSpeedController3 );
-        LiveWindow.addActuator("DriveBase", "Speed Controller Group Right", driveBaseSpeedControllerGroupRight);
-        
         driveBaseSpeedController4 = new Talon(4);
-        LiveWindow.addActuator("DriveBase", "Speed Controller 4", (Talon) driveBaseSpeedController4);
         driveBaseSpeedController4.setInverted(false);
         driveBaseSpeedController5 = new Talon(5);
-        LiveWindow.addActuator("DriveBase", "Speed Controller 5", (Talon) driveBaseSpeedController5);
         driveBaseSpeedController5.setInverted(false);
         driveBaseSpeedController6 = new Talon(6);
-        LiveWindow.addActuator("DriveBase", "Speed Controller 6", (Talon) driveBaseSpeedController6);
         driveBaseSpeedController6.setInverted(false);
         driveBaseSpeedControllerGroupLeft = new SpeedControllerGroup(driveBaseSpeedController4, driveBaseSpeedController5 , driveBaseSpeedController6 );
-        LiveWindow.addActuator("DriveBase", "Speed Controller Group Left", driveBaseSpeedControllerGroupLeft);
-        
         driveBaseDifferentialDrive = new DifferentialDrive(driveBaseSpeedControllerGroupRight, driveBaseSpeedControllerGroupLeft);
-        LiveWindow.addActuator("DriveBase", "Differential Drive", driveBaseDifferentialDrive);
         driveBaseDifferentialDrive.setSafetyEnabled(true);
         driveBaseDifferentialDrive.setExpiration(0.1);
         driveBaseDifferentialDrive.setMaxOutput(1.0);
 
+        
+        
         driveBaseTalonSRX6 = new WPI_TalonSRX(6);
         
-        
+        gearshiftDoubleSolenoidGearShift67 = new DoubleSolenoid(20, 6, 7);
 //        driveBaseTalonSRX7 = new WPI_TalonSRX(7);
         
 //        
 //        driveBaseSpeedControllerGroupHang = new SpeedControllerGroup(driveBaseTalonSRX6, driveBaseTalonSRX7  );
-//        LiveWindow.addActuator("DriveBase", "Speed Controller Group Hang", driveBaseSpeedControllerGroupHang);
         
         driveBaseTalonSRX8 = new WPI_TalonSRX(8);
-        
-        
         driveBaseTalonSRX9 = new WPI_TalonSRX(9);
-        
-        
         driveBaseSpeedControllerGroupRobotLift = new SpeedControllerGroup(driveBaseTalonSRX8, driveBaseTalonSRX9  );
-        LiveWindow.addActuator("DriveBase", "Speed Controller Group RobotLift", driveBaseSpeedControllerGroupRobotLift);
         
-        gearshiftDoubleSolenoidGearShift67 = new DoubleSolenoid(20, 6, 7);
-        LiveWindow.addActuator("DriveBase", "Double Solenoid Gear Shift 01", gearshiftDoubleSolenoidGearShift67);
+        
         
         cubeliftTalonSRX1 = new WPI_TalonSRX(1);
         
@@ -106,7 +96,6 @@ public class RobotMap {
         
         
         cubeliftSpeedControllerGroupLift = new SpeedControllerGroup(cubeliftTalonSRX1, cubeliftTalonSRX2  );
-        LiveWindow.addActuator("Cubelift", "Speed Controller Group Lift", cubeliftSpeedControllerGroupLift);
         
 //        cubeliftSolenoidLift16 = new Solenoid(20, 6);
 //        LiveWindow.addActuator("Cubelift", "Solenoid Lift1 6", cubeliftSolenoidLift16);
@@ -122,7 +111,6 @@ public class RobotMap {
         
         
         intakerSpeedControllerGroupIntake = new SpeedControllerGroup(intakerTalonSRX6, intakerTalonSRX7  );
-        LiveWindow.addActuator("Intaker", "Speed Controller Group Intake", intakerSpeedControllerGroupIntake);
         
         intakerTalonSRX5 = new WPI_TalonSRX(5);
         
@@ -131,7 +119,23 @@ public class RobotMap {
 //        LiveWindow.addActuator("Intaker", "Double Solenoid Turn 23", intakerDoubleSolenoidTurn45);
         
         intakerDoubleSolenoidHold01 = new DoubleSolenoid(20, 0, 1);
-        LiveWindow.addActuator("Intaker", "Double Solenoid Hold 45", intakerDoubleSolenoidHold01);
+        
+        new Thread(() -> {
+			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/cam1");
+			camera.setResolution(640, 480);
+			camera.setFPS(30);
+
+			CvSink cvSink = CameraServer.getInstance().getVideo();
+			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640,
+			480);
+			Mat source = new Mat();
+			Mat output = new Mat();
+			while(true) {
+			cvSink.grabFrame(source);
+			Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+			outputStream.putFrame(output);
+			}
+		}).start();
         
     }
 }
