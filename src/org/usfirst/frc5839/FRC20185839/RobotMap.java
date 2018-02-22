@@ -89,13 +89,13 @@ public class RobotMap {
         
         
         
-        cubeliftTalonSRX1 = new WPI_TalonSRX(1);
+        cubeliftTalonSRX1 = new WPI_TalonSRX(5);
         
         
-        cubeliftTalonSRX2 = new WPI_TalonSRX(2);
+//        cubeliftTalonSRX2 = new WPI_TalonSRX(2);
         
         
-        cubeliftSpeedControllerGroupLift = new SpeedControllerGroup(cubeliftTalonSRX1, cubeliftTalonSRX2  );
+//        cubeliftSpeedControllerGroupLift = new SpeedControllerGroup(cubeliftTalonSRX1, cubeliftTalonSRX2  );
         
 //        cubeliftSolenoidLift16 = new Solenoid(20, 6);
 //        LiveWindow.addActuator("Cubelift", "Solenoid Lift1 6", cubeliftSolenoidLift16);
@@ -112,7 +112,7 @@ public class RobotMap {
         
         intakerSpeedControllerGroupIntake = new SpeedControllerGroup(intakerTalonSRX6, intakerTalonSRX7  );
         
-        intakerTalonSRX5 = new WPI_TalonSRX(5);
+//        intakerTalonSRX5 = new WPI_TalonSRX(5);
         
         
 //        intakerDoubleSolenoidTurn45 = new DoubleSolenoid(20, 6, 5);

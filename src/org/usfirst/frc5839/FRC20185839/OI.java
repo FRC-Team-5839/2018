@@ -53,6 +53,7 @@ public class OI {
     public JoystickButton joystickButton33;
     public JoystickButton joystickButton34;
     public JoystickButton joystickButton35;
+    public JoystickButton joystickButton36;
     public JoystickButton joystickButton11;
     public JoystickButton joystickButton21;
     public Joystick joystick3;
@@ -61,6 +62,8 @@ public class OI {
     public OI() {
 
         joystick3 = new Joystick(2);
+        joystickButton36 = new JoystickButton(joystick3, 6);
+//        joystickButton36.whenPressed(new CubeLift());
         joystickButton35 = new JoystickButton(joystick3, 5);
         joystickButton35.whenPressed(new Intakerout());
         joystickButton34 = new JoystickButton(joystick3, 4);
