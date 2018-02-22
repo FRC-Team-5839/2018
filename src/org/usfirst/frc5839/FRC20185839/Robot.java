@@ -10,6 +10,7 @@ import org.usfirst.frc5839.FRC20185839.subsystems.Intaker;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.hal.PDPJNI;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,7 +25,7 @@ public class Robot extends TimedRobot {
 
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
-
+    public PDPJNI pdp;
     public static OI oi;
     public static DriveBase driveBase;
     public static Cubelift cubelift;
@@ -49,7 +50,8 @@ public class Robot extends TimedRobot {
         oi = new OI();
 
         // Add commands to Autonomous Sendable Chooser
-
+        pdp = new PDPJNI();
+        
         chooser.addDefault("Autonomous Command", new AutonomousCommand());
 
         SmartDashboard.putData("Auto mode", chooser);

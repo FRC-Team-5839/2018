@@ -32,11 +32,11 @@ public class Cubelift extends Subsystem {
     }
     
     public void LiftCube() {
-    	talonSRX1.set(1);
+    	talonSRX1.set(-1);
     }
     
     public void LowerCube() {
-    	talonSRX1.set(-0.5);
+    	talonSRX1.set(0.8);
     }
     
     public void Stop() {

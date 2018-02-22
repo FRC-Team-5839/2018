@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.hal.PDPJNI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -53,7 +55,6 @@ public class RobotMap {
     public static DoubleSolenoid intakerDoubleSolenoidHold01;
 
 	public static void init() {
-		
         driveBaseSpeedController1 = new Talon(1);
         driveBaseSpeedController1.setInverted(false);
         driveBaseSpeedController2 = new Talon(2);
@@ -90,6 +91,7 @@ public class RobotMap {
         
         
         cubeliftTalonSRX1 = new WPI_TalonSRX(5);
+        cubeliftTalonSRX1.setInverted(Boolean.valueOf(true));
         
         
 //        cubeliftTalonSRX2 = new WPI_TalonSRX(2);
@@ -121,20 +123,20 @@ public class RobotMap {
         intakerDoubleSolenoidHold01 = new DoubleSolenoid(20, 0, 1);
         
         new Thread(() -> {
-			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/cam1");
+			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 			camera.setResolution(640, 480);
 			camera.setFPS(30);
 
-			CvSink cvSink = CameraServer.getInstance().getVideo();
-			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640,
-			480);
-			Mat source = new Mat();
-			Mat output = new Mat();
-			while(true) {
-			cvSink.grabFrame(source);
-			Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-			outputStream.putFrame(output);
-			}
+//			CvSink cvSink = CameraServer.getInstance().getVideo();
+//			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 640,
+//			480);
+//			Mat source = new Mat();
+//			Mat output = new Mat();
+//			while(true) {
+//			cvSink.grabFrame(source);
+//			Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+//			outputStream.putFrame(output);
+//			}
 		}).start();
         
     }
