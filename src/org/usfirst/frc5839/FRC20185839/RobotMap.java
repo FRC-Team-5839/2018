@@ -91,7 +91,7 @@ public class RobotMap {
         
         
         cubeliftTalonSRX1 = new WPI_TalonSRX(5);
-        cubeliftTalonSRX1.setInverted(Boolean.valueOf(true));
+        cubeliftTalonSRX1.setInverted(Boolean.valueOf(false));
         
         
 //        cubeliftTalonSRX2 = new WPI_TalonSRX(2);
