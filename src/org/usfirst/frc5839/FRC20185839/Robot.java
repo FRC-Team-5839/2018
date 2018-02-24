@@ -6,6 +6,7 @@ import org.usfirst.frc5839.FRC20185839.subsystems.Cubelift;
 import org.usfirst.frc5839.FRC20185839.subsystems.DriveBase;
 import org.usfirst.frc5839.FRC20185839.subsystems.GearShift;
 import org.usfirst.frc5839.FRC20185839.subsystems.Intaker;
+import org.usfirst.frc5839.FRC20185839.subsystems.Intakerlift;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
     public static Cubelift cubelift;
     public static Intaker intaker;
     public static GearShift gearshift;
+    public static Intakerlift intakerlift;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -44,6 +46,7 @@ public class Robot extends TimedRobot {
         cubelift = new Cubelift();
         intaker = new Intaker();
         gearshift = new GearShift();
+        intakerlift = new Intakerlift();
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
         // constructed yet. Thus, their requires() statements may grab null

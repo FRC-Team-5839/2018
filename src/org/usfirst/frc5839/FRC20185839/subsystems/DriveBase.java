@@ -36,10 +36,10 @@ public class DriveBase extends Subsystem {
 //    private final WPI_TalonSRX talonSRX7 = RobotMap.driveBaseTalonSRX7;
 //    private final SpeedControllerGroup speedControllerGroupHang = RobotMap.driveBaseSpeedControllerGroupHang;
     
-    //Lift Group
-    private final WPI_TalonSRX talonSRX8 = RobotMap.driveBaseTalonSRX8;
-    private final WPI_TalonSRX talonSRX9 = RobotMap.driveBaseTalonSRX9;
-    private final SpeedControllerGroup speedControllerGroupRobotLift = RobotMap.driveBaseSpeedControllerGroupRobotLift;
+//    //Lift Group
+//    private final WPI_TalonSRX talonSRX8 = RobotMap.driveBaseTalonSRX8;
+//    private final WPI_TalonSRX talonSRX9 = RobotMap.driveBaseTalonSRX9;
+//    private final SpeedControllerGroup speedControllerGroupRobotLift = RobotMap.driveBaseSpeedControllerGroupRobotLift;
     
 
 
@@ -68,14 +68,6 @@ public class DriveBase extends Subsystem {
     public void Stop() {
     	differentialDrive.stopMotor();
     }
-    
-    
-    public void LiftRobot() {
-    	
-    	speedControllerGroupRobotLift.set(0.8);
-    	
-    }
-    
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

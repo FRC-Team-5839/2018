@@ -38,7 +38,7 @@ public class RobotMap {
     public static WPI_TalonSRX driveBaseTalonSRX6;
     public static WPI_TalonSRX driveBaseTalonSRX7;
     public static SpeedControllerGroup driveBaseSpeedControllerGroupHang;
-    public static WPI_TalonSRX driveBaseTalonSRX8;
+    public static WPI_TalonSRX intakerliftTalonSRX8;
     public static WPI_TalonSRX driveBaseTalonSRX9;
     public static SpeedControllerGroup driveBaseSpeedControllerGroupRobotLift;
     public static DoubleSolenoid gearshiftDoubleSolenoidGearShift67;
@@ -84,9 +84,9 @@ public class RobotMap {
 //        
 //        driveBaseSpeedControllerGroupHang = new SpeedControllerGroup(driveBaseTalonSRX6, driveBaseTalonSRX7  );
         
-        driveBaseTalonSRX8 = new WPI_TalonSRX(8);
-        driveBaseTalonSRX9 = new WPI_TalonSRX(9);
-        driveBaseSpeedControllerGroupRobotLift = new SpeedControllerGroup(driveBaseTalonSRX8, driveBaseTalonSRX9  );
+//        driveBaseTalonSRX8 = new WPI_TalonSRX(8);
+//        driveBaseTalonSRX9 = new WPI_TalonSRX(9);
+//        driveBaseSpeedControllerGroupRobotLift = new SpeedControllerGroup(driveBaseTalonSRX8, driveBaseTalonSRX9  );
         
         
         
@@ -121,6 +121,7 @@ public class RobotMap {
 //        LiveWindow.addActuator("Intaker", "Double Solenoid Turn 23", intakerDoubleSolenoidTurn45);
         
         intakerDoubleSolenoidHold01 = new DoubleSolenoid(20, 0, 1);
+        intakerliftTalonSRX8 = new WPI_TalonSRX(8);
         
         new Thread(() -> {
 			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
