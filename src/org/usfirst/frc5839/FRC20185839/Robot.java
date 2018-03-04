@@ -2,14 +2,20 @@
 package org.usfirst.frc5839.FRC20185839;
 
 import org.usfirst.frc5839.FRC20185839.commands.AutonomousCommand;
+import org.usfirst.frc5839.FRC20185839.commands.AutonomousLeft;
+import org.usfirst.frc5839.FRC20185839.commands.AutonomousRight;
 import org.usfirst.frc5839.FRC20185839.subsystems.Cubelift;
 import org.usfirst.frc5839.FRC20185839.subsystems.DriveBase;
 import org.usfirst.frc5839.FRC20185839.subsystems.GearShift;
 import org.usfirst.frc5839.FRC20185839.subsystems.Intaker;
 import org.usfirst.frc5839.FRC20185839.subsystems.Intakerlift;
+import org.usfirst.frc5839.FRC20185839.subsystems.PIDwalking;
+import org.usfirst.frc5839.FRC20185839.subsystems.TurningPID;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -33,6 +39,9 @@ public class Robot extends TimedRobot {
     public static Intaker intaker;
     public static GearShift gearshift;
     public static Intakerlift intakerlift;
+    public static TurningPID turningPID;
+    public static PIDwalking pidwalking;
+    public static Timer AutonomousTimer;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -46,6 +55,9 @@ public class Robot extends TimedRobot {
         intaker = new Intaker();
         gearshift = new GearShift();
         intakerlift = new Intakerlift();
+        turningPID = new TurningPID();
+        pidwalking = new PIDwalking();
+        AutonomousTimer = new Timer();
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
         // constructed yet. Thus, their requires() statements may grab null
@@ -55,7 +67,9 @@ public class Robot extends TimedRobot {
         // Add commands to Autonomous Sendable Chooser
         pdp = new PowerDistributionPanel(0);
         
-        chooser.addDefault("Autonomous Command", new AutonomousCommand());
+        chooser.addDefault("AutonomousMid", new AutonomousCommand(DriverStation.getInstance().getGameSpecificMessage()));
+        chooser.addObject("AutonomousLeft", new AutonomousLeft(DriverStation.getInstance().getGameSpecificMessage()));
+        chooser.addObject("AutonomousRight", new AutonomousRight(DriverStation.getInstance().getGameSpecificMessage()));
 
         SmartDashboard.putData("Auto mode", chooser);
         SmartDashboard.putData(pdp);
@@ -80,6 +94,7 @@ public class Robot extends TimedRobot {
         autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
+        AutonomousTimer.start();
     }
 
     /**

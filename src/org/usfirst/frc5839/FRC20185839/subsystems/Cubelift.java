@@ -5,6 +5,7 @@ import org.usfirst.frc5839.FRC20185839.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.SerialPort.StopBits;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -30,7 +31,11 @@ public class Cubelift extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
-    
+    public void LiftHalf() {
+    	talonSRX1.set(1);
+    	Timer.delay(0.2);
+    	Stop();
+    }
     public void LiftCube() {
     	talonSRX1.set(1);
     }

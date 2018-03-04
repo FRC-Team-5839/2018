@@ -1,27 +1,17 @@
 
 package org.usfirst.frc5839.FRC20185839.commands;
-import org.usfirst.frc5839.FRC20185839.Robot;
-
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AutonomousCommand extends Command {
+public class AutonomousLeft extends Command {
 	
 	private String temp;
 	private AutoSelect auto;
-	private boolean isFinished = false;
-	private double RRR_driveforwardtime = 2.0d;
-	private double RRR_turnTime = 1.0d;
 	
-    public AutonomousCommand(String string) {
-    	requires(Robot.driveBase);
-    	requires(Robot.cubelift);
-    	requires(Robot.turningPID);
-    	requires(Robot.pidwalking);
+    public AutonomousLeft(String string) {
     	this.temp = string;
 
     }
@@ -48,8 +38,8 @@ public class AutonomousCommand extends Command {
 		}
     	
     	DriverStation.reportError("------------------------------------------------", false);
-    	DriverStation.reportError("-------------------AutonomousMid----------------", false);
-    	DriverStation.reportError("------------------" + auto + "--------------", false);
+    	DriverStation.reportError("------------------AutonomousLeft----------------", false);
+    	DriverStation.reportError("-----------------" + auto + "--------------", false);
     	DriverStation.reportError("------------------------------------------------", false);
     }
 
@@ -58,7 +48,6 @@ public class AutonomousCommand extends Command {
     protected void execute() {
     	switch (auto) {
     	case RightRightRight:
-    		RightRightRight();
     		break;
     	case RightRightLeft:
     		break;
@@ -81,7 +70,7 @@ public class AutonomousCommand extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return isFinished;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -93,23 +82,5 @@ public class AutonomousCommand extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-    }
-    
-    public void RightRightRight() {
-    	if (Robot.AutonomousTimer.get() <= RRR_driveforwardtime) {
-        	Robot.cubelift.LiftHalf();
-        	Robot.driveBase.DriveArcade(Robot.pidwalking.getPIDController().get(), Robot.turningPID.getPIDController().get());
-        	Robot.pidwalking.Run(3000);;//move forward
-        	Robot.turningPID.Run(60);;
-    	}else if(Robot.AutonomousTimer.get() <= RRR_turnTime) {
-    		Robot.driveBase.Stop();
-    		Robot.pidwalking.Stop();
-    		Robot.pidwalking.Reset();
-    		Robot.turningPID.Stop();
-        	Robot.driveBase.DriveArcade(0, Robot.turningPID.getPIDController().get());
-        	Robot.pidwalking.Run(-500);
-        	Robot.turningPID.Run(90);
-    	}
-
     }
 }

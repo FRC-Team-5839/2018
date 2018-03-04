@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -46,6 +47,8 @@ public class RobotMap {
     public static WPI_TalonSRX intakerTalonSRX5;
     public static DoubleSolenoid intakerDoubleSolenoidTurn45;
     public static DoubleSolenoid intakerDoubleSolenoidHold01;
+    public static Encoder encoderleft;
+    public static Encoder encoderright;
 
 	public static void init() {
         driveBaseSpeedController1 = new Talon(1);
@@ -115,6 +118,9 @@ public class RobotMap {
         
         intakerDoubleSolenoidHold01 = new DoubleSolenoid(20, 0, 1);
         intakerliftTalonSRX8 = new WPI_TalonSRX(8);
+        
+        encoderleft = new Encoder(0, 1);
+        encoderright = new Encoder(2, 3);
         
         new Thread(() -> {
 			UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();

@@ -59,10 +59,13 @@ public class DriveBase extends Subsystem {
 
     }
     
-    public void Drive(double left, double right) {
+    public void DriveTank(double left, double right) {
     	
     	differentialDrive.tankDrive(left, right);
     	
+    }
+    public void DriveArcade(double speed, double turn) {
+    	differentialDrive.arcadeDrive(speed, turn);
     }
     
     public void Stop() {
