@@ -84,7 +84,7 @@ public class RobotMap {
         
         
         cubeliftTalonSRX1 = new WPI_TalonSRX(5);
-        cubeliftTalonSRX1.setInverted(Boolean.valueOf(false));
+        cubeliftTalonSRX1.setInverted(Boolean.valueOf(true));
         
         
 //        cubeliftTalonSRX2 = new WPI_TalonSRX(2);
@@ -98,7 +98,7 @@ public class RobotMap {
 //        cubeliftSolenoidLift27 = new Solenoid(20, 7);
 //        LiveWindow.addActuator("Cubelift", "Solenoid Lift2 7", cubeliftSolenoidLift27);
 //        
-        intakerTalonSRX6 = new WPI_TalonSRX(6);
+        intakerTalonSRX6 = new WPI_TalonSRX(7);
         intakerTalonSRX6.setInverted(Boolean.valueOf(true));
         
         
@@ -110,7 +110,7 @@ public class RobotMap {
 //        intakerTalonSRX5 = new WPI_TalonSRX(5);
         
         
-//        intakerDoubleSolenoidTurn45 = new DoubleSolenoid(20, 6, 5);
+        intakerDoubleSolenoidTurn45 = new DoubleSolenoid(20, 2, 3);
 //        LiveWindow.addActuator("Intaker", "Double Solenoid Turn 23", intakerDoubleSolenoidTurn45);
         
         intakerDoubleSolenoidHold01 = new DoubleSolenoid(20, 0, 1);

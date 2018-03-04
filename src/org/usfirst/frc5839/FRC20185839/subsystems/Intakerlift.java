@@ -16,7 +16,7 @@ public class Intakerlift extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public void Lift() {
-		liftmotor.set(-0.5);
+		liftmotor.set(-1);
 	}
 	
 	public void Lower() {

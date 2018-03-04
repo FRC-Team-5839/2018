@@ -24,15 +24,15 @@ public class Intaker extends Subsystem {
 
     
     public void Intake() {
-    	speedControllerGroupIntake.set(1);
+    	talonSRX3.set(1);
     }
     
     public void Out() {
-    	speedControllerGroupIntake.set(-1);
+    	talonSRX3.set(-1);
     }
     
     public void Stop() {
-    	speedControllerGroupIntake.set(0);
+    	talonSRX3.set(0);
     }
      
     public void SolenoidOpen() {
